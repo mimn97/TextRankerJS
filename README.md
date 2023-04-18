@@ -37,7 +37,7 @@ const examples = [
 ];
 ```
 
-2. Adjust the pageSize variable in the js/main.js file to set the number of triplets displayed per page:
+2. In the `js/main.js` file, adjust the `pageSize` variable to set the number of triplets displayed per page:
 
 ```javascript
 const pageSize = 10; // Change this value to your desired number of triplets per page
@@ -45,6 +45,11 @@ const pageSize = 10; // Change this value to your desired number of triplets per
 
 By modifying these settings, you can easily adapt TextRankerJS to work with your own examples and preferred page size.
 
+3. In the `js/main.js` file, set the `colorizeBoxes` flag to `false` to disable the background colors for each method.
+
+```javascript
+const colorizeBoxes = true; // Set to 'false' to disable background colors for method boxes
+```
 
 
 ## License
