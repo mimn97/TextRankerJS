@@ -6,6 +6,9 @@ body {
     margin-bottom: 20px;
 }
 
+.methodAnon {
+     background: rgba(0, 0, 0, 0.05); /* Light Gray */
+}
 
 .method0, .methodA {
     background-color: rgba(255, 99, 132, 0.1); /* Red */
@@ -22,4 +25,18 @@ body {
 .rank-number {
     padding: 4px 7px;
     background: rgba(0, 0, 0, 0.75) !important;
+}
+
+.ui-sortable-handle {
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+ /* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.ui-sortable-handle:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
 }

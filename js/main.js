@@ -35,7 +35,7 @@ $(document).ready(function () {
             const exampleIndex = start + index;
             
             let savedRanking = null;
-                if (window.localStorage) {
+            if (window.localStorage) {
                 const savedData = localStorage.getItem(`example-${exampleIndex}`);
                 if (savedData) {
                     savedRanking = JSON.parse(savedData).ranking;
@@ -45,12 +45,12 @@ $(document).ready(function () {
             const methodsNames = getMethodsNames(example);
             const randomizedMethods = savedRanking || shuffleArray(methodsNames);
 
-            let className = "";
+            let className = "methodAnon";
             let exampleHtml = `<div class="container example">`;
             exampleHtml += `<ul class="list-group sortable" data-example-index="${exampleIndex}">`;
             randomizedMethods.forEach((method, idx) => {
                 if(colorizeBoxes){
-                    var className = method;
+                    className = method;
                 }
                 exampleHtml += `
                     <li class="list-group-item ${className}" data-method="${method}">
@@ -134,7 +134,7 @@ $(document).ready(function () {
     function init() {
         renderExamples();
         renderPagination();
-        
+
         // Initialize event listeners for ranking and pagination...
         $("#save-button").on("click", saveToFile);
     }
