@@ -127,16 +127,17 @@ $(document).ready(function () {
             currentPage = parseInt($(this).text());
             renderExamples();
             renderPagination();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
     function init() {
         renderExamples();
         renderPagination();
+        
         // Initialize event listeners for ranking and pagination...
+        $("#save-button").on("click", saveToFile);
     }
-
-    $("#save-button").on("click", saveToFile);
 
     init();
 });
