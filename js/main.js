@@ -11,7 +11,7 @@ $(document).ready(function () {
         return array;
     }
 
-    function getMethodsNames(example){
+    function getMethodsNames(example) {
         const numMethods = Object.keys(example).length;
         const baseMethod = "method";
         const methodsNames = [];
