@@ -1,5 +1,6 @@
 $(document).ready(function () {
     const pageSize = 10;
+    const colorizeBoxes = true;
     let currentPage = 1;
     let collectedData = [];
 
@@ -44,12 +45,16 @@ $(document).ready(function () {
             const methodsNames = getMethodsNames(example);
             const randomizedMethods = savedRanking || shuffleArray(methodsNames);
 
+            let className = "";
             let exampleHtml = `<div class="container example">`;
             exampleHtml += `<ul class="list-group sortable" data-example-index="${exampleIndex}">`;
             randomizedMethods.forEach((method, idx) => {
+                if(colorizeBoxes){
+                    var className = method;
+                }
                 exampleHtml += `
-                    <li class="list-group-item ${method}" data-method="${method}">
-                        ${example[method]}
+                    <li class="list-group-item ${className}" data-method="${method}">
+                        <span class="rank-number badge rounded-pill text-light">${idx + 1}</span>&nbsp; ${example[method]}
                     </li>`;
             });
             exampleHtml += `</ul></div>`;
@@ -62,8 +67,15 @@ $(document).ready(function () {
             stop: function (event, ui) {
                 const exampleIndex = $(this).data("example-index");
                 const ranking = $(this).sortable("toArray", { attribute: "data-method" });
+                renderReorderedRankings($(this));
                 handleRanking(exampleIndex, ranking);
             },
+        });
+    }
+
+    function renderReorderedRankings(example){
+        example.find('span').each(function(idx){
+            $(this).html(idx + 1);
         });
     }
 

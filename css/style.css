@@ -18,3 +18,8 @@ body {
 .method2, .methodC {
     background-color: rgba(255, 206, 86, 0.1); /* Yellow */
 }
+
+.rank-number {
+    padding: 4px 7px;
+    background: rgba(0, 0, 0, 0.75) !important;
+}
