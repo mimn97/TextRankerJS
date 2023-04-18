@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextRankerJS</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Your HTML content goes here -->
+    <script src="js/examples.js"></script>
+    <script src="js/main.js"></script>
+
+
+    <div class="container my-2">
+      <div class="p-3 text-left">
+        <h1 class="text-body-emphasis">TextRankerJS</h1>
+        <div class="text-muted">
+          <strong>Annotation guidelines:</strong>
+          <ol>
+              <li>Reorder the text boxes by dragging and dropping to rank them.</li>
+              <li>Your rankings are saved automatically as you make changes.</li>
+              <li>When finished, click "Save" to download your rankings as a JSON file.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="example-container"></div>
+
+    <div class="container">
+        <nav aria-label="Page navigation">
+            <ul id="pagination" class="pagination justify-content-center"></ul>
+        </nav>
+
+        <button id="save-button" class="btn btn-primary">Save</button>
+    </div>
+
+
+    <div class="container">
+      <br /><br />
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">© 2023 University of Lisbon, IST.</p>
+      </footer>
+    </div>
+
+
+</body>
+</html>

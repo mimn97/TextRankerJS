@@ -1,0 +1,20 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.example {
+    margin-bottom: 20px;
+}
+
+
+.method0, .methodA {
+    background-color: rgba(255, 99, 132, 0.1); /* Red */
+}
+
+.method1, .methodB {
+    background-color: rgba(75, 192, 192, 0.1); /* Green */
+}
+
+.method2, .methodC {
+    background-color: rgba(255, 206, 86, 0.1); /* Yellow */
+}
