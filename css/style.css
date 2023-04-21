@@ -4,6 +4,18 @@ body {
 
 .example {
     margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.reference{
+    margin-bottom: -4px;
+    font-size: 14px;
+    padding: 4px 15px;
+}
+
+.reference div{
+    background: rgba(0, 0, 0, 0.01); /* Light Gray */
+    color: #666;
 }
 
 .methodAnon {
@@ -13,11 +25,9 @@ body {
 .method0, .methodA {
     background-color: rgba(255, 99, 132, 0.1); /* Red */
 }
-
 .method1, .methodB {
     background-color: rgba(75, 192, 192, 0.1); /* Green */
 }
-
 .method2, .methodC {
     background-color: rgba(255, 206, 86, 0.1); /* Yellow */
 }
@@ -25,6 +35,30 @@ body {
 .rank-number {
     padding: 4px 7px;
     background: rgba(0, 0, 0, 0.75) !important;
+    margin-right: -4px;
+    margin-left: 10px;
+    /*margin-bottom: 4px;*/
+}
+
+.rank-number-input {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.75) !important;
+    margin-right: -4px;
+    margin-left: 10px;
+    border-radius: 50rem!important;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    width: 30px;
+    border: 0px;
+}
+
+.rank-number-input-invalid {
+    border: 2px solid #E66465;
 }
 
 .ui-sortable-handle {
@@ -39,4 +73,16 @@ body {
     cursor: grabbing;
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

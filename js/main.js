@@ -1,10 +1,51 @@
 $(document).ready(function () {
-    const pageSize = 10;
-    const colorizeBoxes = true;
-    let currentPage = 1;
-    let collectedData = [];
+    let useDraggableInterface = $('#interface-type').val() === "draggable";
+    // const useDraggableInterface = true;
 
-   function shuffleArray(array) {
+    const colorizeBoxes = true;
+    const colorizePerMethod = true;
+    const showReferences = true;
+    const shuffleMethods = true;
+    const pageSize = 10;
+    
+    const instructions_draggable = [
+        `Reorder the text boxes by dragging and dropping to rank them.`,
+        `Your rankings are saved automatically as you make changes.`,
+        `When finished, click "Download" to save your rankings as a JSON file.`,
+    ];
+    const instructions_inputable = [
+        `Set the ranking of each text with integers (e.g., 1-N) – ties are allowed.`,
+        `Your rankings are saved automatically as you make changes.`,
+        `When finished, click "Download" to save your rankings as a JSON file.`,
+    ];
+    
+    let collectedData = [];
+    let currentPage = 1;
+    
+    const hash = window.location.hash;
+    const pageRegex = /page=(\d+)/;
+    if (hash && pageRegex.test(hash)) {
+        const match = hash.match(pageRegex);
+        currentPage = parseInt(match[1]);
+    }
+
+    function renderInstructions() {
+        if(useDraggableInterface) {
+            var instructions = instructions_draggable;
+        }
+        else {
+            var instructions = instructions_inputable;
+        }
+        const instructionsContainer = $("#instructions");
+        instructionsContainer.empty();
+        instHtml = ``;
+        instructions.forEach((instruction, index) => {
+            instHtml += `<li>${instruction}</li>`;
+        });
+        instructionsContainer.append(instHtml);
+    }
+
+    function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
@@ -12,21 +53,11 @@ $(document).ready(function () {
         return array;
     }
 
-    function getMethodsNames(example) {
-        const numMethods = Object.keys(example).length;
-        const baseMethod = "method";
-        const methodsNames = [];
-        for (let i = 0; i < numMethods; i++) {
-          const letter = String.fromCharCode("A".charCodeAt(0) + i);
-          methodsNames.push(baseMethod + letter);
-        }
-        return methodsNames;
-    }
-
     function renderExamples() {
         const start = (currentPage - 1) * pageSize;
         const end = currentPage * pageSize;
         const currentExamples = examples.slice(start, end);
+        let numMethods = 0;
 
         const exampleContainer = $("#example-container");
         exampleContainer.empty();
@@ -34,54 +65,120 @@ $(document).ready(function () {
         currentExamples.forEach((example, index) => {
             const exampleIndex = start + index;
             
+            let savedMethods = null;
             let savedRanking = null;
             if (window.localStorage) {
                 const savedData = localStorage.getItem(`example-${exampleIndex}`);
                 if (savedData) {
-                    savedRanking = JSON.parse(savedData).ranking;
+                    const parsedData = JSON.parse(savedData);
+                    savedMethods = parsedData.methods;
+                    savedRanking = parsedData.ranking;
                 }
             }
-
-            const methodsNames = getMethodsNames(example);
-            const randomizedMethods = savedRanking || shuffleArray(methodsNames);
+            var methodsNames = Object.keys(example);
+            numMethods = methodsNames.length;
+            if(showReferences && methodsNames.includes("reference")) {
+                methodsNames.shift();
+                numMethods = numMethods - 1;
+            }
+            var methodsRanking = Array(numMethods).fill().map((_, i) => i+1);
+            if(shuffleMethods){
+                methodsNames = shuffleArray(methodsNames);
+            }
+            const randomizedMethods = savedMethods || methodsNames;
+            const randomizedRanking = savedRanking || methodsRanking;
+           
 
             let className = "methodAnon";
-            let exampleHtml = `<div class="container example">`;
+            let exampleHtml = ``;
+            if(showReferences){
+                exampleHtml += `<div class="container reference"><div class="p-2 rounded">${example['reference']}</div></div>`;
+            }
+            exampleHtml += `<div class="container example">`;
             exampleHtml += `<ul class="list-group sortable" data-example-index="${exampleIndex}">`;
             randomizedMethods.forEach((method, idx) => {
                 if(colorizeBoxes){
-                    className = method;
+                    if(colorizePerMethod){
+                        className = method;
+                    }
+                    else{
+                        className = "method" + idx;
+                    }
                 }
-                exampleHtml += `
+                if(useDraggableInterface) {
+                    exampleHtml += `
+                        <li class="list-group-item ${className}" data-method="${method}">
+                            <div class="row">
+                            <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light">${idx + 1}</span></div>
+                            <div class="col">${example[method]}</div>
+                            </div>
+                        </li>`;
+                }
+                else {
+                    exampleHtml += `
                     <li class="list-group-item ${className}" data-method="${method}">
-                        <span class="rank-number badge rounded-pill text-light">${idx + 1}</span>&nbsp; ${example[method]}
+                        <div class="row">
+                        <div class="col-xs-auto">
+                        <input type="text" class="form-control form-control-sm rank-number-input rounded text-light" value="${randomizedRanking[idx]}" />
+                        </div>
+                        <div class="col">${example[method]}</div>
+                        </div>
                     </li>`;
+                }
             });
             exampleHtml += `</ul></div>`;
-
             exampleContainer.append(exampleHtml);
-            handleRanking(exampleIndex, randomizedMethods);
+
+            handleRanking(exampleIndex, randomizedMethods, randomizedRanking);
         });
 
-        $(".sortable").sortable({
-            stop: function (event, ui) {
-                const exampleIndex = $(this).data("example-index");
-                const ranking = $(this).sortable("toArray", { attribute: "data-method" });
-                renderReorderedRankings($(this));
-                handleRanking(exampleIndex, ranking);
-            },
-        });
+
+        if(useDraggableInterface) {
+            $(".sortable").sortable({
+                stop: function (event, ui) {
+                    const exampleIndex = $(this).data("example-index");
+                    $(this).find('span').each(function(idx){
+                        $(this).html(idx + 1);
+                    });
+                    let methods = $(this).find('.list-group-item').map(function(){
+                        return $(this).data('method');
+                    }).get();
+                    let ranking = $(this).find('.rank-number').map(function(){
+                        return parseInt($(this).html());
+                    }).get();
+                    handleRanking(exampleIndex, methods, ranking);
+                },
+            });
+        }
+        else {
+            $(".example .rank-number-input").on("change", function (e) {
+                let val = parseInt($(this).val());
+                let example = $(this).closest(".list-group");
+                let exampleIndex = example.data("example-index");
+                let methods = example.find('.list-group-item').map(function(){
+                    return $(this).data('method');
+                }).get();
+                let ranking = example.find('.rank-number-input').map(function(){
+                    return $(this).val();
+                }).get();
+                
+                if(val < 1 || val > methods.length){
+                    $(this).css("border", "2px solid #E66465");
+                }
+                else{
+                    $(this).css("border", "0px");
+                    handleRanking(exampleIndex, methods, ranking);
+                }
+            });
+        }
     }
 
-    function renderReorderedRankings(example){
-        example.find('span').each(function(idx){
-            $(this).html(idx + 1);
-        });
-    }
-
-    function handleRanking(exampleIndex, ranking) {
+    function handleRanking(exampleIndex, methods, ranking) {
+        console.log(methods);
+        console.log(ranking);
         const data = {
             exampleIndex: exampleIndex,
+            methods: methods,
             ranking: ranking,
             timestamp: new Date().toISOString(),
         };
@@ -115,7 +212,7 @@ $(document).ready(function () {
         pagination.empty();
 
         for (let i = 1; i <= totalPages; i++) {
-            const pageItem = $(`<li class="page-item"><a class="page-link" href="#">${i}</a></li>`);
+            const pageItem = $(`<li class="page-item"><a class="page-link" href="#page=${i}">${i}</a></li>`);
             if (i === currentPage) {
                 pageItem.addClass("active");
             }
@@ -127,18 +224,27 @@ $(document).ready(function () {
             currentPage = parseInt($(this).text());
             renderExamples();
             renderPagination();
+            window.location.hash = `page=${currentPage}`;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
+    function clearStorage() {
+        const confirmed = confirm("Are you sure you want to clear the local storage? This action cannot be undone.");
+        if (confirmed && window.localStorage) {
+            localStorage.clear();
+        }
+    }
+
     function init() {
+        renderInstructions();
         renderExamples();
         renderPagination();
 
         // Initialize event listeners for ranking and pagination...
         $("#save-button").on("click", saveToFile);
+        $("#clear-storage-button").on("click", clearStorage);
     }
 
     init();
 });
-
