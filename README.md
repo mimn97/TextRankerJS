@@ -14,10 +14,11 @@ TextRankerJS is a fully client-side JavaScript tool for ranking texts generated 
 
 ## Demo
 
-Try out the TextRankerJS demo here: https://mtreviso.github.io/TextRankerJS/.
+Try out the TextRankerJS demo here: https://mtreviso.github.io/TextRankerJS/. 
 
 ![TextRankerJS Screenshot](screenshot.png "TextRankerJS Screenshot")
 
+If you want to check out the inputable interface instead, check this [link](https://mtreviso.github.io/TextRankerJS/index2.html).
 
 
 ## How to Use
