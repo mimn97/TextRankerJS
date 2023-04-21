@@ -6,6 +6,7 @@ $(document).ready(function () {
     const colorizePerMethod = true;
     const showReferences = true;
     const shuffleMethods = true;
+    const showGoldLabels = true;
     const pageSize = 10;
     
     const instructions_draggable = [
@@ -53,6 +54,14 @@ $(document).ready(function () {
         return array;
     }
 
+    function removeItemFromArray(array, item){
+        let index = array.indexOf(item);
+        if (index !== -1) {
+            array.splice(index, 1);
+        }
+        return array;
+    }
+
     function renderExamples() {
         const start = (currentPage - 1) * pageSize;
         const end = currentPage * pageSize;
@@ -76,12 +85,12 @@ $(document).ready(function () {
                 }
             }
             var methodsNames = Object.keys(example);
-            numMethods = methodsNames.length;
-            if(showReferences && methodsNames.includes("reference")) {
-                methodsNames.shift();
-                numMethods = numMethods - 1;
-            }
-            var methodsRanking = Array(numMethods).fill().map((_, i) => i+1);
+            methodsNames = removeItemFromArray(methodsNames, "reference");
+            methodsNames = removeItemFromArray(methodsNames, "gold_label");
+            methodsNames = removeItemFromArray(methodsNames, "contrast_label");
+
+            const numMethods = methodsNames.length;
+            const methodsRanking = Array(numMethods).fill().map((_, i) => i+1);
             if(shuffleMethods){
                 methodsNames = shuffleArray(methodsNames);
             }
@@ -92,7 +101,12 @@ $(document).ready(function () {
             let className = "methodAnon";
             let exampleHtml = ``;
             if(showReferences){
-                exampleHtml += `<div class="container reference"><div class="p-2 rounded">${example['reference']}</div></div>`;
+                exampleHtml += `<div class="container reference"><div class="p-2 rounded">`
+                if(showGoldLabels) {
+                    gold_label = example['gold_label'] || 'Reference';
+                    exampleHtml += `<span class="badge bg-secondary text-light text-uppercase">${gold_label}</span><br /> `
+                }
+                exampleHtml += `${example['reference']}</div></div>`;
             }
             exampleHtml += `<div class="container example">`;
             exampleHtml += `<ul class="list-group sortable" data-example-index="${exampleIndex}">`;
