@@ -49,6 +49,8 @@ const examples = [
 
 6. **Show or hide reference texts**: To show or hide reference texts in the examples, set the `showReferences` variable in the `js/main.js` file to `true` (show) or `false` (hide).
 
+7. **Show or hide the gold label**: To toggle the display of gold labels for references, set the `showGoldLabels` flag in the `js/main.js` file to `true` (show) or `false` (hide).
+
 
 ## License
 
