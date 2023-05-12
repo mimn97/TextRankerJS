@@ -188,8 +188,6 @@ $(document).ready(function () {
     }
 
     function handleRanking(exampleIndex, methods, ranking) {
-        console.log(methods);
-        console.log(ranking);
         const data = {
             exampleIndex: exampleIndex,
             methods: methods,
