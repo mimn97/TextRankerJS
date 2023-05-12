@@ -86,3 +86,23 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+
+.validity-rating, .naturalness-rating {
+   color: #666;
+   /*font-variant: small-caps;
+   text-transform: lowercase;*/
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none; 
+  /*width: 100%;*/
+  cursor: pointer;
+  outline: none;
+  border-radius: 15px;
+  height: 6px;
+  background: #ccc;
+}
+
+
