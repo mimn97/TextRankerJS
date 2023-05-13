@@ -1,13 +1,14 @@
 $(document).ready(function () {
     const colorizeBoxes = true;
-    const colorizePerMethod = true;
+    const colorizePerMethod = false;
     const showReferences = true;
     const shuffleMethods = true;
     const showGoldLabels = true;
     const pageSize = 10;
     
     const instructions = [
-        `For each text box, provide a Validity rating (1-3 stars).`,
+        `Check the <a href="tutorial_likert.html">annotation guide</a>.`,
+        `For each text box, provide a Validity rating (1-5 stars).`,
         `For each text box, provide a Naturalness rating (1-5 stars).`,
         `Your decisions are saved automatically as you make changes.`,
         `When finished, click "Download" to save your annotation as a JSON file.`,
@@ -65,7 +66,7 @@ $(document).ready(function () {
             let savedValidity = null;
             let savedNaturalness = null;
             if (window.localStorage) {
-                const savedData = localStorage.getItem(`example-${exampleIndex}`);
+                const savedData = window.localStorage.getItem(`example-${exampleIndex}`);
                 if (savedData) {
                     const parsedData = JSON.parse(savedData);
                     savedMethods = parsedData.methods;
@@ -83,7 +84,7 @@ $(document).ready(function () {
             }
 
             const numMethods = methodsNames.length;
-            const methodsValidity = Array(numMethods).fill().map((_, i) => 2);
+            const methodsValidity = Array(numMethods).fill().map((_, i) => 3);
             const methodsNaturalness = Array(numMethods).fill().map((_, i) => 3);
             
             const randomizedMethods = savedMethods || methodsNames;
@@ -108,7 +109,7 @@ $(document).ready(function () {
                         className = method;
                     }
                     else{
-                        className = "method" + idx;
+                        className = "method" + (idx % 2 == 0 ? 0 : 1);
                     }
                 }
                 
@@ -119,20 +120,19 @@ $(document).ready(function () {
                                 ${example[method]}
                             </div>
                             <div class="col-auto text-right" >
-                                <div class="validity-rating text-muted">
-                                    <label>Validity: </label>
+                                <div class="validity-rating">
                                     <input 
                                         type="range" 
                                         id="validity-${exampleIndex}-${method}" 
                                         name="validity-${exampleIndex}-${method}" 
                                         min="1" 
-                                        max="3"
+                                        max="5"
                                         value="${randomizedValidity[idx]}"
                                     >
                                     <span class="range-value">${randomizedValidity[idx]}</span>
+                                    <label style="margin-right:30px;">&nbsp;(validity)</label>
                                 </div>
                                 <div class="naturalness-rating">
-                                    <label>Naturalness: </label>
                                     <input 
                                         type="range" 
                                         id="naturalness-${exampleIndex}-${method}" 
@@ -142,6 +142,7 @@ $(document).ready(function () {
                                         value="${randomizedNaturalness[idx]}"
                                     >
                                     <span class="range-value">${randomizedNaturalness[idx]}</span>
+                                    <label>&nbsp;(naturalness)</label>
                                 </div>
                             </div>
                         </div>
@@ -163,9 +164,7 @@ $(document).ready(function () {
         $(".example .list-group-item input[type='range']").on("input", function (e) {
             const rating = $(this).val();
             $(this).siblings(".range-value").text(rating);
-        });
 
-        $(".example .list-group-item input[type='range']").on("change", function (e) {
             let example = $(this).closest(".list-group");
             let exampleIndex = example.data("example-index");
             let methods = example.find('.list-group-item').map(function(){
@@ -177,7 +176,6 @@ $(document).ready(function () {
             let naturalnessRatings = methods.map(method => {
                 return $('#naturalness-'+exampleIndex+'-'+method).val();
             });
-            console.log(collectedData);
             handleRating(exampleIndex, methods, validityRatings, naturalnessRatings);
         });
 
@@ -192,12 +190,13 @@ $(document).ready(function () {
             timestamp: new Date().toISOString(),
         };
         collectedData[exampleIndex] = data;
+        // console.log(data);
 
         // Save data to a local file asynchronously
         if (window.localStorage) {
             const key = `example-${exampleIndex}`;
             const value = JSON.stringify(data);
-            localStorage.setItem(key, value);
+            window.localStorage.setItem(key, value);
         } else {
             console.error("Local storage is not supported by your browser.");
         }
@@ -239,9 +238,10 @@ $(document).ready(function () {
     }
 
     function clearStorage() {
-        const confirmed = confirm("Are you sure you want to clear the local storage? This action cannot be undone.");
+        const confirmed = confirm("Are you sure you want to clear your annotation? This action cannot be undone.");
         if (confirmed && window.localStorage) {
-            localStorage.clear();
+            window.localStorage.clear();
+            window.location.reload();
         }
     }
 
@@ -250,7 +250,7 @@ $(document).ready(function () {
         renderExamples();
         renderPagination();
 
-        // Initialize event listeners for ranking and pagination...
+        // Initialize event listeners for saving and cleaning annotation...
         $("#save-button").on("click", saveToFile);
         $("#clear-storage-button").on("click", clearStorage);
     }

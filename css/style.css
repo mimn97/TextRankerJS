@@ -14,21 +14,34 @@ body {
 }
 
 .reference div{
-    background: rgba(0, 0, 0, 0.01); /* Light Gray */
+    background: rgba(255, 206, 86, 0.15); /* Light Yellow */
     color: #666;
+}
+
+.dotted-separator {
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 5px;
 }
 
 .methodAnon {
      background: rgba(0, 0, 0, 0.05); /* Light Gray */
 }
 
-.method0, .methodA {
+.method0 {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.method1 {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+
+.methodA {
     background-color: rgba(255, 99, 132, 0.1); /* Red */
 }
-.method1, .methodB {
+.methodB {
     background-color: rgba(75, 192, 192, 0.1); /* Green */
 }
-.method2, .methodC {
+.methodC {
     background-color: rgba(255, 206, 86, 0.1); /* Yellow */
 }
 
