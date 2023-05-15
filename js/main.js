@@ -14,7 +14,7 @@ $(document).ready(function () {
         `Your rankings are saved automatically as you make changes.`,
         `When finished, click "Download" to save your rankings as a JSON file.`,
     ];
-    const instructions_inputable = [
+    const instructions_inputtable = [
         `Set the ranking of each text with integers (e.g., 1-N) – ties are allowed.`,
         `Your rankings are saved automatically as you make changes.`,
         `When finished, click "Download" to save your rankings as a JSON file.`,
@@ -35,7 +35,7 @@ $(document).ready(function () {
             var instructions = instructions_draggable;
         }
         else {
-            var instructions = instructions_inputable;
+            var instructions = instructions_inputtable;
         }
         const instructionsContainer = $("#instructions");
         instructionsContainer.empty();

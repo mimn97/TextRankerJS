@@ -18,7 +18,7 @@ Try out the TextRankerJS demo here: https://mtreviso.github.io/TextRankerJS/.
 
 ![TextRankerJS Screenshot](screenshot.png "TextRankerJS Screenshot")
 
-If you want to check out the inputable interface instead, check this [link](https://mtreviso.github.io/TextRankerJS/index2.html).
+If you want to check out the inputtable interface instead, check this [link](https://mtreviso.github.io/TextRankerJS/index2.html).
 
 
 ## How to Use
@@ -42,7 +42,7 @@ const examples = [
 2. **Change the page size**: To change the number of examples displayed per page, modify the `pageSize` variable in the `js/main.js` file (default: `pageSize = 10`).
 
 
-3. **Choose between draggable and inputable interfaces**: You can select either a draggable interface (drag and drop to reorder) or an inputable interface (input numbers to set the ranking). To change the interface, set the `useDraggableInterface` variable in the `js/main.js` file to `true` for the draggable interface or `false` for the inputable interface.
+3. **Choose between draggable and inputtable interfaces**: You can select either a draggable interface (drag and drop to reorder) or an inputtable interface (input numbers to set the ranking). To change the interface, set the `useDraggableInterface` variable in the `js/main.js` file to `true` for the draggable interface or `false` for the inputtable interface.
 
 4. **Shuffle or maintain the order of methods**: To shuffle the methods before rendering, set the `shuffleMethods` variable in the `js/main.js` file to `true`. If you want to maintain the original order of methods as they appear in the examples, set the variable to `false`.
 
