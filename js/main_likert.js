@@ -8,8 +8,7 @@ $(document).ready(function () {
     
     const instructions = [
         `Check the <a href="tutorial_likert.html">annotation guide</a>.`,
-        `For each text box, provide a Validity rating (1-5 stars).`,
-        `For each text box, provide a Naturalness rating (1-5 stars).`,
+        `For each example, provide a validity and a naturalness rating on a scale from 1 (least) to 5 (most).`,
         `Your decisions are saved automatically as you make changes.`,
         `When finished, click "Download" to save your annotation as a JSON file.`,
     ];
