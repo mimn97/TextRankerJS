@@ -7,6 +7,17 @@ body {
     font-size: 14px;
 }
 
+.instruction{
+    margin-bottom: -4px;
+    font-size: 14px;
+    padding: 4px 15px;
+}
+
+.instruction div{
+    background: rgba(255, 206, 86, 0.15); /* Light Yellow */
+    color: #666;
+}
+
 .reference{
     margin-bottom: -4px;
     font-size: 14px;

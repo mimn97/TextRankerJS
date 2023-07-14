@@ -109,9 +109,10 @@ $(document).ready(function () {
                     exampleHtml += `<span class="badge bg-secondary text-light text-uppercase">${gold_label}</span><br /> `
                 }
                 exampleHtml += `${example['instruction']}</div></div>`;
-                // exampleHtml += `<div class="container reference"><div class="p-2 rounded">`
-                // exampleHtml += `<span class="badge bg-secondary text-light text-uppercase">Reference</span><br /> `
-                // exampleHtml += `${example['reference']}</div></div>`;
+                
+                exampleHtml += `<div class="container reference"><div class="p-2 rounded">`
+                exampleHtml += `<span class="badge bg-secondary text-light text-uppercase">Reference</span><br /> `
+                exampleHtml += `${example['reference']}</div></div>`;
             }
             exampleHtml += `<div class="container example">`;
             exampleHtml += `<ul class="list-group sortable" data-example-index="${exampleIndex}">`;
