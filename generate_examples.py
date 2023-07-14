@@ -19,14 +19,17 @@ def main():
     responses = read_json_file("/home/ryan/TextRankerJS/results/full_n15_model_generations.json")[0]
     # print(responses)
     
+    formatted_responses = []
     with open("results/human_annotation_exp.json", "w") as hae:
         keys = [keys for keys in responses]
         for i in range(N):
             reference = "Instruction: " + instructions[i] + "\n" + "Reference: " + references[i]
-            exp = {"reference": reference}
+            exp = {"gold_label": "na", "contrast_label": "na", "reference": reference}
             for j in keys:
                 exp[j] = responses[j][i]
-            hae.write(json.dumps(exp) + ",\n")
+            formatted_responses.append(exp)
+        
+        json.dump(formatted_responses, hae, indent=4)
         
     
 if __name__ == '__main__':
