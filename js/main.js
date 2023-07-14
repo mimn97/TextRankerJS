@@ -102,14 +102,13 @@ $(document).ready(function () {
             let className = "methodAnon";
             let exampleHtml = ``;
             if(showReferences){
-                exampleHtml += `<div class="container instruction"><div class="p-2 rounded">`
+                exampleHtml += `<div class="container reference"><div class="p-2 rounded">`
                 exampleHtml += `<span class="badge bg-secondary text-light text-uppercase">Instruction</span><br /> `
-                exampleHtml += `${example['instruction']}</div></div>`;
+                exampleHtml += `${example['instruction']}`; 
                 if(showGoldLabels) {
                     gold_label = example['gold_label'] || 'Reference';
                     exampleHtml += `<span class="badge bg-secondary text-light text-uppercase">${gold_label}</span><br /> `
                 }
-                exampleHtml += `<div class="container reference"><div class="p-2 rounded">`
                 exampleHtml += `<span class="badge bg-secondary text-light text-uppercase">Reference</span><br /> `
                 exampleHtml += `${example['reference']}</div></div>`;
             }
