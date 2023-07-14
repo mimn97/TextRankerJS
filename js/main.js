@@ -6,8 +6,8 @@ $(document).ready(function () {
     const colorizePerMethod = true;
     const showReferences = true;
     const shuffleMethods = true;
-    const showGoldLabels = true;
-    const pageSize = 10;
+    const showGoldLabels = false;
+    const pageSize = 5;
     
     const instructions_draggable = [
         `Reorder the text boxes by dragging and dropping to rank them.`,
