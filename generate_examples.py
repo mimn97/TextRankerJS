@@ -24,7 +24,7 @@ def main():
         keys = [keys for keys in responses]
         for i in range(N):
             reference = "Instruction: " + instructions[i] + "\n" + "Reference: " + references[i]
-            exp = {"gold_label": "na", "contrast_label": "na", "reference": reference}
+            exp = {"gold_label": "na", "contrast_label": "na", "instruction": instructions[i], "reference": references[i]}
             for j in keys:
                 exp[j] = responses[j][i]
             formatted_responses.append(exp)

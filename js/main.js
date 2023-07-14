@@ -85,6 +85,7 @@ $(document).ready(function () {
                 }
             }
             var methodsNames = Object.keys(example);
+            methodsNames = removeItemFromArray(methodsNames, "instruction");
             methodsNames = removeItemFromArray(methodsNames, "reference");
             methodsNames = removeItemFromArray(methodsNames, "gold_label");
             methodsNames = removeItemFromArray(methodsNames, "contrast_label");
@@ -101,11 +102,13 @@ $(document).ready(function () {
             let className = "methodAnon";
             let exampleHtml = ``;
             if(showReferences){
+                exampleHtml += `<div class="container instruction"><div class="p-2 rounded">`
                 exampleHtml += `<div class="container reference"><div class="p-2 rounded">`
                 if(showGoldLabels) {
                     gold_label = example['gold_label'] || 'Reference';
                     exampleHtml += `<span class="badge bg-secondary text-light text-uppercase">${gold_label}</span><br /> `
                 }
+                exampleHtml += `${example['instruction']}</div></div>`
                 exampleHtml += `${example['reference']}</div></div>`;
             }
             exampleHtml += `<div class="container example">`;
