@@ -108,7 +108,7 @@ $(document).ready(function () {
                     gold_label = example['gold_label'] || 'Reference';
                     exampleHtml += `<span class="badge bg-secondary text-light text-uppercase">${gold_label}</span><br /> `
                 }
-                exampleHtml += `${example['instruction']}</div></div>`
+                exampleHtml += `${example['instruction']}`
                 exampleHtml += `${example['reference']}</div></div>`;
             }
             exampleHtml += `<div class="container example">`;
