@@ -95,6 +95,9 @@ $(document).ready(function () {
             if(shuffleMethods){
                 methodsNames = shuffleArray(methodsNames);
             }
+            console.log(methodsRanking)
+            console.log(numMethods)
+            console.log(methodsNames)
             const randomizedMethods = savedMethods || methodsNames;
             const randomizedRanking = savedRanking || methodsRanking;
            
