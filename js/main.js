@@ -156,44 +156,44 @@ $(document).ready(function () {
         });
 
 
-        // if(useDraggableInterface) {
-        //     $(".sortable").sortable({
-        //         stop: function (event, ui) {
-        //             const exampleIndex = $(this).data("example-index");
-        //             $(this).find('span').each(function(idx){
-        //                 $(this).html(idx + 1);
-        //             });
-        //             let methods = $(this).find('.list-group-item').map(function(){
-        //                 return $(this).data('method');
-        //             }).get();
-        //             let ranking = $(this).find('.rank-number').map(function(){
-        //                 return parseInt($(this).html());
-        //             }).get();
-        //             handleRanking(exampleIndex, methods, ranking);
-        //         },
-        //     });
-        // }
-        // else {
-        //     $(".example .rank-number-input").on("change", function (e) {
-        //         let val = parseInt($(this).val());
-        //         let example = $(this).closest(".list-group");
-        //         let exampleIndex = example.data("example-index");
-        //         let methods = example.find('.list-group-item').map(function(){
-        //             return $(this).data('method');
-        //         }).get();
-        //         let ranking = example.find('.rank-number-input').map(function(){
-        //             return $(this).val();
-        //         }).get();
+        if(useDraggableInterface) {
+            $(".sortable").sortable({
+                stop: function (event, ui) {
+                    const exampleIndex = $(this).data("example-index");
+                    // $(this).find('span').each(function(idx){
+                    //     $(this).html(idx + 1);
+                    // });
+                    let methods = $(this).find('.list-group-item').map(function(){
+                        return $(this).data('method');
+                    }).get();
+                    let ranking = $(this).find('.rank-number').map(function(){
+                        return parseInt($(this).html());
+                    }).get();
+                    handleRanking(exampleIndex, methods, ranking);
+                },
+            });
+        }
+        else {
+            $(".example .rank-number-input").on("change", function (e) {
+                let val = parseInt($(this).val());
+                let example = $(this).closest(".list-group");
+                let exampleIndex = example.data("example-index");
+                let methods = example.find('.list-group-item').map(function(){
+                    return $(this).data('method');
+                }).get();
+                let ranking = example.find('.rank-number-input').map(function(){
+                    return $(this).val();
+                }).get();
                 
-        //         if(val < 1 || val > methods.length){
-        //             $(this).css("border", "2px solid #E66465");
-        //         }
-        //         else{
-        //             $(this).css("border", "0px");
-        //             handleRanking(exampleIndex, methods, ranking);
-        //         }
-        //     });
-        // }
+                if(val < 1 || val > methods.length){
+                    $(this).css("border", "2px solid #E66465");
+                }
+                else{
+                    $(this).css("border", "0px");
+                    handleRanking(exampleIndex, methods, ranking);
+                }
+            });
+        }
     }
 
     function handleRanking(exampleIndex, methods, ranking) {
