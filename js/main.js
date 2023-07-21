@@ -95,9 +95,6 @@ $(document).ready(function () {
             if(shuffleMethods){
                 methodsNames = shuffleArray(methodsNames);
             }
-            console.log(methodsRanking)
-            console.log(numMethods)
-            console.log(methodsNames)
             const randomizedMethods = savedMethods || methodsNames;
             const randomizedRanking = savedRanking || methodsRanking;
            
@@ -123,10 +120,10 @@ $(document).ready(function () {
             exampleHtml += `
                 <li class="list-group-item black-bar" data-method="black-bar">
                     <div class="row">
-                        <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light">black-bar</span></div>
+                        <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light"></span></div>
                         <div class="col black-bar-content"></div>
                     </div>
-                </li>`
+                </li>`;
 
             randomizedMethods.forEach((method, idx) => {
                 if(colorizeBoxes){
@@ -138,7 +135,6 @@ $(document).ready(function () {
                     }
                 }
                 if(useDraggableInterface) {
-
                     exampleHtml += `
                         <li class="list-group-item ${className}" data-method="${method}">
                             <div class="row">
