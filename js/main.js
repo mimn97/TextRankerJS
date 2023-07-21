@@ -271,6 +271,8 @@ $(document).ready(function () {
         // Initialize event listeners for ranking and pagination...
         $("#save-button").on("click", saveToFile);
         $("#clear-storage-button").on("click", clearStorage);
+        
+        window.collectedData = collectedData
     }
 
     init();
