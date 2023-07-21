@@ -129,7 +129,7 @@ $(document).ready(function () {
                     exampleHtml += `
                         <li class="list-group-item ${className}" data-method="${method}">
                             <div class="row">
-                            <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light">${idx + 1}</span></div>
+                            <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light">${example[method]}</span></div>
                             <div class="col">${example[method]}</div>
                             </div>
                         </li>`;
