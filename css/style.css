@@ -1,3 +1,16 @@
+.black-bar {
+    background-color: black;
+    color: white;
+    /* Add other styles as needed */
+  }
+  
+.black-bar-content {
+    /* Set the height and other styles of the black bar's content */
+    height: 20px; /* Adjust the height as needed */
+    background-color: gray; /* Or any other color you prefer for the bar's content */
+    /* Add other styles as needed */
+}
+
 body {
     font-family: Arial, sans-serif;
 }
