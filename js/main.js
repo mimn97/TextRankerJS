@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    let useDraggableInterface = $('#interface-type').val() === "draggable";
-    // const useDraggableInterface = true;
+    // let useDraggableInterface = $('#interface-type').val() === "draggable";
+    const useDraggableInterface = true;
 
     const colorizeBoxes = true;
     const colorizePerMethod = true;
