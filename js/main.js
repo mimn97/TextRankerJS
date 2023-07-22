@@ -117,13 +117,13 @@ $(document).ready(function () {
             exampleHtml += `<div class="container example">`;
             exampleHtml += `<ul class="list-group sortable" data-example-index="${exampleIndex}">`;
 
-            exampleHtml += `
-                <li class="list-group-item black-bar" data-method="black-bar">
-                    <div class="row">
-                        <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light"></span></div>
-                        <div class="col black-bar-content"></div>
-                    </div>
-                </li>`;
+            // exampleHtml += `
+            //     <li class="list-group-item black-bar" data-method="black-bar">
+            //         <div class="row">
+            //             <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light"></span></div>
+            //             <div class="col black-bar-content"></div>
+            //         </div>
+            //     </li>`;
 
             randomizedMethods.forEach((method, idx) => {
                 if(colorizeBoxes){
@@ -135,11 +135,11 @@ $(document).ready(function () {
                     }
                 }
                 if(useDraggableInterface) {
-                    if (method === "black-bar") {
+                    console.log(method)
+                    if (method == "black-bar") {
                         exampleHtml += `
                             <li class="list-group-item black-bar" data-method="black-bar">
                                 <div class="row">
-                                    <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light"></span></div>
                                     <div class="col black-bar-content"></div>
                                 </div>
                             </li>`;
