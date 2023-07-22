@@ -32,6 +32,7 @@ def main():
             for idx in range(K):
                 models.append(f'System {chr(ord("A") + idx)}')          
             exp = {"gold_label": "na", "contrast_label": "na", "instruction": instructions[i], "reference": references[i]}
+            exp["black-bar"] = "black-bar"
             for j in keys:
                 model = models.pop(random.randrange(len(models)))
                 true_order[j] = model

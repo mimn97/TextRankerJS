@@ -135,13 +135,23 @@ $(document).ready(function () {
                     }
                 }
                 if(useDraggableInterface) {
-                    exampleHtml += `
+                    if (method === "black-bar") {
+                        exampleHtml += `
+                            <li class="list-group-item black-bar" data-method="black-bar">
+                                <div class="row">
+                                    <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light"></span></div>
+                                    <div class="col black-bar-content"></div>
+                                </div>
+                            </li>`;
+                    } else {
+                        exampleHtml += `
                         <li class="list-group-item ${className}" data-method="${method}">
                             <div class="row">
                             <div class="col-xs-auto"><span class="rank-number badge rounded-pill text-light">${method}</span></div>
                             <div class="col">${example[method]}</div>
                             </div>
                         </li>`;
+                    }
                 }
                 else {
                     exampleHtml += `
