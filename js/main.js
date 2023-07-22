@@ -51,6 +51,7 @@ $(document).ready(function () {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
+        console.log(array)
         return array;
     }
 
@@ -135,7 +136,6 @@ $(document).ready(function () {
                     }
                 }
                 if(useDraggableInterface) {
-                    console.log(method)
                     if (method == "black-bar") {
                         exampleHtml += `
                             <li class="list-group-item black-bar" data-method="black-bar">
