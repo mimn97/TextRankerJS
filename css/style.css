@@ -139,4 +139,18 @@ input[type="range"] {
   background: #ccc;
 }
 
+figure {
+    border: 1px #cccccc solid;
+    padding: 1px;
+    margin:auto
+  }
+  
+  figcaption {
+    background-color: black;
+    color: white;
+    font-style: italic;
+    padding: 2px;
+    text-align: center;
+  }
+
 

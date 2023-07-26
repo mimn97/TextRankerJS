@@ -68,10 +68,10 @@ $(document).ready(function () {
     function renderExamples() {
         const start = (currentPage - 1) * pageSize;
         const end = currentPage * pageSize;
-        const currentExamples = examples.slice(start, end);
+        const currentExamples = examples_task.slice(start, end);
         let numMethods = 0;
 
-        const exampleContainer = $("#example-container");
+        const exampleContainer = $("#example-container-task");
         exampleContainer.empty();
 
         currentExamples.forEach((example, index) => {
@@ -232,28 +232,16 @@ $(document).ready(function () {
             console.error("Local storage is not supported by your browser.");
         }
     }
-
-    // function saveToFile() {
-    //     const jsonData = JSON.stringify(collectedData);
-    //     const blob = new Blob([jsonData], { type: "application/json" });
-    //     const url = URL.createObjectURL(blob);
-    //     const link = document.createElement("a");
-    //     link.href = url;
-    //     link.download = "annotation_data.json";
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     document.body.removeChild(link);
-    // }
     
     function saveToTurker() {
         const jsonData = JSON.stringify(collectedData);
-        
-
+        const inputElement = document.getElementById('jsonDataInput-task');
+        inputElement.value = jsonData;
     }
 
     function renderPagination() {
-        const totalPages = Math.ceil(examples.length / pageSize);
-        const pagination = $("#pagination");
+        const totalPages = Math.ceil(examples_task.length / pageSize);
+        const pagination = $("#pagination-task");
         pagination.empty();
 
         for (let i = 1; i <= totalPages; i++) {
@@ -287,7 +275,7 @@ $(document).ready(function () {
         renderPagination();
 
         // Initialize event listeners for ranking and pagination...
-        $("#save-button").on("click", saveToFile);
+        $("#save-button").on("click", saveToTurker);
         $("#clear-storage-button").on("click", clearStorage);
         
         window.collectedData = collectedData

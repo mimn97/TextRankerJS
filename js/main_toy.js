@@ -5,7 +5,7 @@ $(document).ready(function () {
     const colorizeBoxes = true;
     const colorizePerMethod = true;
     const showReferences = true;
-    const shuffleMethods = true;
+    const shuffleMethods = false;
     const showGoldLabels = false;
     const pageSize = 1;
     
@@ -68,10 +68,10 @@ $(document).ready(function () {
     function renderExamples() {
         const start = (currentPage - 1) * pageSize;
         const end = currentPage * pageSize;
-        const currentExamples = examples.slice(start, end);
+        const currentExamples = examples_toy.slice(start, end);
         let numMethods = 0;
 
-        const exampleContainer = $("#example-container");
+        const exampleContainer = $("#example-container-toy");
         exampleContainer.empty();
 
         currentExamples.forEach((example, index) => {
@@ -234,26 +234,29 @@ $(document).ready(function () {
     }
 
     // function saveToFile() {
+    //     // const jsonData = JSON.stringify(collectedData);
+    //     // const blob = new Blob([jsonData], { type: "application/json" });
+    //     // const url = URL.createObjectURL(blob);
+    //     // const link = document.createElement("a");
+    //     // link.href = url;
+    //     // link.download = "annotation_data.json";
+    //     // document.body.appendChild(link);
+    //     // link.click();
+    //     // document.body.removeChild(link);
     //     const jsonData = JSON.stringify(collectedData);
-    //     const blob = new Blob([jsonData], { type: "application/json" });
-    //     const url = URL.createObjectURL(blob);
-    //     const link = document.createElement("a");
-    //     link.href = url;
-    //     link.download = "annotation_data.json";
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     document.body.removeChild(link);
+    //     const inputElement = document.getElementById('jsonDataInput');
+    //     inputElement.value = jsonData;
     // }
     
     function saveToTurker() {
         const jsonData = JSON.stringify(collectedData);
-        
-
+        const inputElement = document.getElementById('jsonDataInput-toy');
+        inputElement.value = jsonData;
     }
 
     function renderPagination() {
-        const totalPages = Math.ceil(examples.length / pageSize);
-        const pagination = $("#pagination");
+        const totalPages = Math.ceil(examples_toy.length / pageSize);
+        const pagination = $("#pagination-toy");
         pagination.empty();
 
         for (let i = 1; i <= totalPages; i++) {
@@ -287,7 +290,7 @@ $(document).ready(function () {
         renderPagination();
 
         // Initialize event listeners for ranking and pagination...
-        $("#save-button").on("click", saveToFile);
+        $("#save-button").on("click", saveToTurker);
         $("#clear-storage-button").on("click", clearStorage);
         
         window.collectedData = collectedData
@@ -295,3 +298,4 @@ $(document).ready(function () {
 
     init();
 });
+ 
