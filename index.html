@@ -10,28 +10,27 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/mimn97/TextRankerJS/master/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<div class="jumbotron text-center" style="margin-bottom:0">
+<div class="jumbotron text-center" style="margin: bottom 0px;">
   <h3>A Study about Human Preference on AI-generated texts</h3>
   <div>Please email Ryan Koo at <a href = "mailto:koo00017@umn.edu"> koo00017@umn.edu</a> if you have any questions and/or find any problem.</div> 
 </div>
 
-<div class="container" style="font-size:18px; margin-bottom:0;">
+<div class="container" style="font-size:10px; margin-bottom:0;">
     <div class="container" id="instruction_page" style="font-size:18px"> 
       <div style="display: none; margin-bottom: 0;"></div>
-      <script src="https://raw.githubusercontent.com/mimn97/TextRankerJS/master/js/instruction.js"></script>
+      <script src="js/instruction.js"></script>
     </div>
   <body>
       <input type="hidden" id="interface-type" value="draggable"/>
       <div>
-        <crowd-form>
-  
+        <crowd-form>  
         <div class="container" id="toy_page" style="font-size:18px; display: none;"> 
-          <div style="display: none; margin-bottom: 0;"></div>
-          <script src="https://raw.githubusercontent.com/mimn97/TextRankerJS/master/js/toy.js"></script>
-          <script src="https://raw.githubusercontent.com/mimn97/TextRankerJS/master/js/examples_toy.js"></script>
-          <script src="https://raw.githubusercontent.com/mimn97/TextRankerJS/master/js/main_toy.js"></script>
+          <div style="margin-bottom: 0;"></div>
+          <script src="js/toy.js"></script>
+          <script src="js/examples_toy.js"></script>
+          <script src="js/main_toy.js"></script>
           <div class="container" id="example-container-toy"></div>
           <nav aria-label="Page navigation">
             <ul id="pagination-toy" class="pagination justify-content-center"></ul>
@@ -43,9 +42,9 @@
 
         <div class="container" id="task_page" style="font-size:20px; display: none;"> 
           <div style="display: none; margin-bottom: 0;"></div>
-          <script src="https://raw.githubusercontent.com/mimn97/TextRankerJS/master/js/task.js"></script>
-          <script src="https://raw.githubusercontent.com/mimn97/TextRankerJS/master/js/examples_task.js"></script>
-          <script src="https://raw.githubusercontent.com/mimn97/TextRankerJS/master/js/main_task.js"></script>
+          <script src="js/task.js"></script>
+          <script src="js/examples_task.js"></script>
+          <script src="js/main_task.js"></script>
           <div class="container" id="example-container-task"></div>
           <nav aria-label="Page navigation">
             <ul id="pagination-task" class="pagination justify-content-center"></ul>
@@ -54,15 +53,6 @@
           <input type="hidden" name="amt_output_task" id="jsonDataInput-task"/>
         </div>
 
-        <!-- <div class="container my-2">
-          <div class="p-3 text-left">
-            <button id="clear-storage-button" class="btn btn-sm btn-secondary float-right clear-storage-button" title="Clear data">Clear local storage</button>
-            <h1 class="text-body-emphasis"><a class="text-dark" href="index.html">TextRankerJS</a></h1>
-            <div class="text-muted">
-              <ol id="instructions" class="px-4 m-0"></ol>
-            </div>
-          </div>
-        </div> -->
         </crowd-form>
       </div>
 </div>
@@ -71,9 +61,9 @@
         <p class="col-md-4 mb-0 text-body-secondary">
           © 2023 University of Minnesota, Twin Cities.
         </p>
-        <!-- <p class="col-md-4 mb-0 text-body-secondary text-right">
+        <p class="col-md-4 mb-0 text-body-secondary text-right">
           Source code available on <a href="https://github.com/mtreviso/TextRankerJS" target="_blank" rel="noopener noreferrer">GitHub</a>.
-        </p> -->
+        </p>
       </footer>
     </div>
 
