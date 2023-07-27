@@ -20,7 +20,7 @@ $(document).ready(function () {
     		<p> Here is a <b>toy example</b> to walk you through the entire system: 
 
 			<figure class='text-center'>
-				<img src="instruction_fig1.svg" alt="Figure 1 - dkdk" width="" height="550">
+				<img src="https://mimn97.github.io/TextRankerJS/instruction_fig1.svg" alt="Figure 1 - dkdk" width="" height="550">
 				<figcaption>Figure 1 - The example interface of a task </figcaption>
 			</figure>
 			</p>
@@ -51,7 +51,7 @@ $(document).ready(function () {
 			After reading System A that answers only no, if you think system B sounds better because it provides more thoughtful explanations with why it thinks so, 
 			then you may <b>drag and drop the system B to the top</b>, swapping with the System A. <b>(Figure 2)</b>.
 				<figure class='text-center'>
-					<img src="instruction_fig2.svg" alt="Figure 2 - dkdk" width="1100" height="550">
+					<img src="https://mimn97.github.io/TextRankerJS/instruction_fig2.svg" alt="Figure 2 - dkdk" width="1100" height="550">
 				<figcaption>Figure 2 - (Left) System A and B swapped with each other; (Right) Ranked System </figcaption>
 				</figure>
 			</p>
